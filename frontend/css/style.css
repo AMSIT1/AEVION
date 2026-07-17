@@ -1,1 +1,119 @@
-body{margin:0;background:#050816;color:#fff;font-family:Segoe UI}.bg{position:fixed;inset:0;background:radial-gradient(circle,#153a7a,transparent 30%),#050816}.hero{display:grid;grid-template-columns:1fr 1fr;padding:60px}.card{background:rgba(255,255,255,.08);padding:20px;border-radius:20px}.avatar{width:220px;height:220px;border-radius:50%;margin:auto;background:radial-gradient(#00d4ff,#6c63ff,#111)}nav{display:flex;justify-content:space-between;padding:20px;background:rgba(255,255,255,.06)}button{padding:10px 20px}.wave{height:8px;width:220px;background:#00d4ff}
+body {
+    margin: 0;
+    background: #050816;
+    color: #fff;
+    font-family: Segoe UI
+}
+
+.bg {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, #153a7a, transparent 30%), #050816;
+
+    z-index: -1;
+    pointer-events: none;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 60px
+}
+
+.card {
+    background: rgba(255, 255, 255, .08);
+    padding: 20px;
+    border-radius: 20px
+}
+
+.avatar {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    margin: auto;
+    background: radial-gradient(#00d4ff, #6c63ff, #111)
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(255, 255, 255, .06)
+}
+
+button {
+    padding: 10px 20px
+}
+
+.wave {
+    height: 8px;
+    width: 220px;
+    background: #00d4ff
+}
+.status{
+    margin-top:20px;
+    color:#66ffff;
+    font-weight:bold;
+    text-align:center;
+}
+
+.conversation{
+
+    margin-top:20px;
+
+    width:340px;
+    height:260px;
+
+    overflow-y:auto;
+
+    border:1px solid rgba(0,255,255,.2);
+
+    background:rgba(255,255,255,.04);
+
+    border-radius:15px;
+
+    padding:15px;
+
+}
+
+.msg{
+
+    margin-bottom:12px;
+
+    color:white;
+
+    line-height:1.6;
+
+    font-size:15px;
+
+}
+
+.user{
+
+    color:#00ffd5;
+
+}
+
+.avion{
+
+    color:#87cfff;
+
+}
+
+.talk-btn{
+
+    margin-top:20px;
+
+    width:100%;
+
+    padding:14px;
+
+    cursor:pointer;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+}

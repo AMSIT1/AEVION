@@ -1,7 +1,7 @@
 /*
 ==================================================
  AVION Premium 2C.2B
- Speech Recognition
+ Speech Recognition + TTS
 ==================================================
 */
 
@@ -9,23 +9,23 @@ const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (!SpeechRecognition) {
-    alert("Your browser does not support Speech Recognition.\nPlease use Google Chrome or Microsoft Edge.");
+    alert("Speech Recognition is not supported.\nUse Google Chrome or Microsoft Edge.");
 }
 
 const recognition = new SpeechRecognition();
 
-recognition.lang = "hi-IN";          // Hindi
-recognition.continuous = false;      // One sentence
-recognition.interimResults = false;  // Final result only
+recognition.lang = "hi-IN";
+recognition.continuous = false;
+recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
+/* ==========================================
+   Start Listening
+========================================== */
 
-/*
--------------------------------------
-Start Listening
--------------------------------------
-*/
 function startListening() {
+
+    speechSynthesis.cancel();
 
     console.log("🎤 Listening...");
 
@@ -33,26 +33,26 @@ function startListening() {
 
 }
 
+/* ==========================================
+   Recognition Started
+========================================== */
 
-/*
--------------------------------------
-Recognition Started
--------------------------------------
-*/
 recognition.onstart = () => {
 
     console.log("Microphone Active");
 
     updateStatus("🎤 Listening...");
 
+    if (typeof avatarStartListening === "function") {
+        avatarStartListening();
+    }
+
 };
 
+/* ==========================================
+   Speech Result
+========================================== */
 
-/*
--------------------------------------
-Speech Result
--------------------------------------
-*/
 recognition.onresult = async (event) => {
 
     const text = event.results[0][0].transcript;
@@ -61,8 +61,28 @@ recognition.onresult = async (event) => {
 
     updateConversation("You", text);
 
-    // Send to Python Brain
-    const reply = await sendToBrain(text);
+    if (typeof avatarStopListening === "function")
+        avatarStopListening();
+
+    if (typeof avatarThinking === "function")
+        avatarThinking();
+
+    let reply = "";
+
+    try {
+
+        reply = await sendToBrain(text);
+
+    } catch (e) {
+
+        console.error(e);
+
+        reply = "Brain se connect nahi ho paaya.";
+
+    }
+
+    if (typeof avatarStopThinking === "function")
+        avatarStopThinking();
 
     updateConversation("Avion", reply);
 
@@ -70,39 +90,42 @@ recognition.onresult = async (event) => {
 
 };
 
+/* ==========================================
+   Recognition Finished
+========================================== */
 
-/*
--------------------------------------
-Recognition Finished
--------------------------------------
-*/
 recognition.onend = () => {
 
     console.log("Listening Finished");
 
     updateStatus("🟢 Online");
 
+    if (typeof avatarStopListening === "function")
+        avatarStopListening();
+
 };
 
+/* ==========================================
+   Recognition Error
+========================================== */
 
-/*
--------------------------------------
-Recognition Error
--------------------------------------
-*/
 recognition.onerror = (event) => {
 
     console.error(event.error);
 
     updateStatus("🔴 " + event.error);
 
+    if (typeof avatarStopListening === "function")
+        avatarStopListening();
+
+    if (typeof avatarStopThinking === "function")
+        avatarStopThinking();
+
 };
 
-/*
-==================================================
-Text To Speech
-==================================================
-*/
+/* ==========================================
+   Text To Speech
+========================================== */
 
 function speak(text) {
 
@@ -120,9 +143,12 @@ function speak(text) {
 
     speech.onstart = () => {
 
-        console.log("Avion Speaking");
+        console.log("🗣 Avion Speaking");
 
         updateStatus("🗣 Speaking");
+
+        if (typeof avatarStartSpeaking === "function")
+            avatarStartSpeaking();
 
     };
 
@@ -130,24 +156,28 @@ function speak(text) {
 
         updateStatus("🟢 Online");
 
+        if (typeof avatarStopSpeaking === "function")
+            avatarStopSpeaking();
+
+        if (typeof avatarSmile === "function")
+            avatarSmile();
+
     };
 
     speechSynthesis.speak(speech);
 
 }
-/*
-========================================
-Temporary UI Functions
-========================================
-*/
 
-function updateStatus(status) {
+/* ==========================================
+   UI Helpers
+========================================== */
 
-    const el = document.getElementById("status");
+function updateStatus(text) {
 
-    if (el) {
-        el.innerText = status;
-    }
+    const status = document.getElementById("status");
+
+    if (status)
+        status.innerText = text;
 
 }
 
@@ -155,14 +185,43 @@ function updateConversation(sender, message) {
 
     const box = document.getElementById("conversation");
 
-    if (!box) return;
+    if (!box)
+        return;
 
-    box.innerHTML += `
-        <div class="msg">
-            <strong>${sender}:</strong> ${message}
-        </div>
-    `;
+    const div = document.createElement("div");
+
+    div.className = "msg";
+
+    if (sender === "You") {
+
+        div.innerHTML =
+            "<span class='user'><b>You:</b></span> " + message;
+
+    } else {
+
+        div.innerHTML =
+            "<span class='avion'><b>Avion:</b></span> " + message;
+
+    }
+
+    box.appendChild(div);
 
     box.scrollTop = box.scrollHeight;
 
 }
+
+/* ==========================================
+   Talk Button
+========================================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const talkBtn = document.getElementById("talkBtn");
+
+    if (talkBtn) {
+
+        talkBtn.addEventListener("click", startListening);
+
+    }
+
+});

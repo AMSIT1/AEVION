@@ -1,185 +1,293 @@
-/* ==========================================
-   AVION Premium Avatar
-   File: js/avatar.js
-========================================== */
+/* ==========================================================
+   AVION Premium Avatar V2.1
+   Part 5 - Avatar Engine
+========================================================== */
 
 class AvionAvatar {
 
     constructor() {
 
-        this.leftEye = document.getElementById("leftEye");
-        this.rightEye = document.getElementById("rightEye");
+        this.avatar = document.getElementById("avionAvatar");
+
+        this.leftEye = document.querySelector(".left-eye");
+        this.rightEye = document.querySelector(".right-eye");
+
         this.mouth = document.getElementById("mouth");
-        this.statusText = document.querySelector(".avatar-status span:last-child");
-        this.statusDot = document.querySelector(".status-dot");
 
-        this.isTalking = false;
-        this.isListening = false;
+        this.state = "idle";
 
-        this.startIdle();
+        this.init();
 
     }
 
-    startIdle() {
+    init() {
 
-        this.setStatus("ONLINE");
+        if (!this.avatar) return;
 
-        this.randomBlink();
+        this.wakeUp();
+
+        this.startBlinking();
+
+        this.startBreathing();
 
     }
 
-    randomBlink() {
+    /* ==========================
+       Wake Up Animation
+    ========================== */
+
+    wakeUp() {
+
+        this.avatar.style.opacity = "0";
+
+        this.avatar.animate([
+
+            {
+                opacity: 0,
+                transform: "translateY(30px) scale(.9)"
+            },
+
+            {
+                opacity: 1,
+                transform: "translateY(0) scale(1)"
+            }
+
+        ], {
+
+            duration: 1200,
+            easing: "ease-out",
+            fill: "forwards"
+
+        });
+
+    }
+
+    /* ==========================
+       Natural Blinking
+    ========================== */
+
+    startBlinking() {
 
         setInterval(() => {
 
-            if (!this.leftEye || !this.rightEye) return;
+            this.blink();
 
-            this.leftEye.style.transform = "scaleY(.05)";
-            this.rightEye.style.transform = "scaleY(.05)";
-
-            setTimeout(() => {
-
-                this.leftEye.style.transform = "scaleY(1)";
-                this.rightEye.style.transform = "scaleY(1)";
-
-            }, 150);
-
-        }, 4000 + Math.random() * 3000);
+        }, 4500 + Math.random() * 2500);
 
     }
 
-    startTalking() {
+    blink() {
 
-        if (this.isTalking) return;
+        if (!this.leftEye || !this.rightEye) return;
 
-        this.isTalking = true;
+        this.leftEye.animate([
+            { transform: "scaleY(1)" },
+            { transform: "scaleY(.08)" },
+            { transform: "scaleY(1)" }
+        ], {
+            duration: 180
+        });
 
-        this.setStatus("SPEAKING");
-
-        this.talkAnimation = setInterval(() => {
-
-            this.mouth.setAttribute(
-                "d",
-                "M180 220 Q200 242 220 220"
-            );
-
-            setTimeout(() => {
-
-                this.mouth.setAttribute(
-                    "d",
-                    "M180 220 Q200 233 220 220"
-                );
-
-            }, 180);
-
-        }, 300);
+        this.rightEye.animate([
+            { transform: "scaleY(1)" },
+            { transform: "scaleY(.08)" },
+            { transform: "scaleY(1)" }
+        ], {
+            duration: 180
+        });
 
     }
 
-    stopTalking() {
+    /* ==========================
+       Idle Breathing
+    ========================== */
 
-        this.isTalking = false;
+    startBreathing() {
 
-        clearInterval(this.talkAnimation);
+        setInterval(() => {
 
-        this.mouth.setAttribute(
-            "d",
-            "M180 220 Q200 233 220 220"
-        );
+            if (this.state !== "idle") return;
 
-        this.setStatus("ONLINE");
+            this.avatar.animate([
+
+                {
+                    transform: "translateY(0px)"
+                },
+
+                {
+                    transform: "translateY(-5px)"
+                },
+
+                {
+                    transform: "translateY(0px)"
+                }
+
+            ], {
+
+                duration: 3500
+
+            });
+
+        }, 3500);
 
     }
+
+    /* ==========================
+       Listening
+    ========================== */
 
     startListening() {
 
-        this.isListening = true;
+        this.state = "listening";
 
-        this.setStatus("LISTENING");
+        this.avatar.classList.remove("speaking", "thinking");
 
-        this.statusDot.style.background = "#00ffff";
-        this.statusDot.style.boxShadow = "0 0 20px cyan";
+        this.avatar.classList.add("listening");
 
     }
 
     stopListening() {
 
-        this.isListening = false;
+        this.avatar.classList.remove("listening");
 
-        this.statusDot.style.background = "#00ff88";
-        this.statusDot.style.boxShadow = "0 0 12px #00ff88";
-
-        this.setStatus("ONLINE");
+        this.state = "idle";
 
     }
+
+    /* ==========================
+       Thinking
+    ========================== */
 
     thinking() {
 
-        this.setStatus("THINKING");
+        this.state = "thinking";
+
+        this.avatar.classList.remove("listening", "speaking");
+
+        this.avatar.classList.add("thinking");
 
     }
 
-    setStatus(text) {
+    stopThinking() {
 
-        if (this.statusText)
+        this.avatar.classList.remove("thinking");
 
-            this.statusText.textContent = text;
+        this.state = "idle";
+
+    }
+
+    /* ==========================
+       Speaking
+    ========================== */
+
+    startSpeaking() {
+
+        this.state = "speaking";
+
+        this.avatar.classList.remove("listening", "thinking");
+
+        this.avatar.classList.add("speaking");
+
+    }
+
+    stopSpeaking() {
+
+        this.avatar.classList.remove("speaking");
+
+        this.state = "idle";
+
+    }
+
+    /* ==========================
+       Smile
+    ========================== */
+
+    smile() {
+
+        if (!this.mouth) return;
+
+        this.mouth.animate([
+
+            {
+                transform: "translateX(-50%) scaleY(1)"
+            },
+
+            {
+                transform: "translateX(-50%) scaleY(1.4)"
+            },
+
+            {
+                transform: "translateX(-50%) scaleY(1)"
+            }
+
+        ], {
+
+            duration: 700
+
+        });
 
     }
 
 }
 
-/* ------------------------------ */
+/* ==========================================================
+   Create Avatar
+========================================================== */
 
-window.addEventListener("DOMContentLoaded", () => {
+let avionAvatar = null;
 
-    window.avatar = new AvionAvatar();
+function initAvatar() {
+    avionAvatar = new AvionAvatar();
+}
+/* ==========================================================
+   Global Functions
+========================================================== */
 
-});
+function avatarStartListening() {
+    if (!avionAvatar) return;
 
-/* ======================================
-   Demo
-====================================== */
-
-function demoConversation(){
-
-    avatar.startListening();
-
-    setTimeout(()=>{
-
-        avatar.thinking();
-
-    },2000);
-
-    setTimeout(()=>{
-
-        avatar.startTalking();
-
-    },3500);
-
-    setTimeout(()=>{
-
-        avatar.stopTalking();
-
-    },7000);
+    avionAvatar.startListening();
 
 }
 
-/* ======================================
-   Future Integration
+function avatarStopListening() {
+    if (!avionAvatar) return;
 
-speechSynthesis
+    avionAvatar.stopListening();
 
-↓
+}
 
-avatar.startTalking()
+function avatarThinking() {
+    if (!avionAvatar) return;
 
-↓
+    avionAvatar.thinking();
 
-speech ends
+}
 
-↓
+function avatarStopThinking() {
+    if (!avionAvatar) return;
 
-avatar.stopTalking()
+    avionAvatar.stopThinking();
 
-====================================== */
+}
+
+function avatarStartSpeaking() {
+    if (!avionAvatar) return;
+
+    avionAvatar.startSpeaking();
+
+}
+
+function avatarStopSpeaking() {
+    if (!avionAvatar) return;
+
+    avionAvatar.stopSpeaking();
+
+}
+
+function avatarSmile() {
+    if (!avionAvatar) return;
+
+    avionAvatar.smile();
+
+}
