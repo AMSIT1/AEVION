@@ -9,17 +9,17 @@
             <div class="avion-title">
                 <span class="title-glow">AVION</span>
             </div>
-            
+
             <h1 class="hero-heading">
                 Your Intelligent AI Companion
             </h1>
-            
+
             <div class="tagline">
                 <p>Designed to listen.</p>
                 <p>Built to understand.</p>
                 <p>Created for the future.</p>
             </div>
-            
+
             <button class="cta-button primary-button">
                 <span class="button-icon">🎤</span>
                 <span>Talk to Avion</span>
@@ -27,11 +27,89 @@
         </div>
 
         <div class="hero-avatar">
-            <div class="avatar-container">
-                <div class="avatar-core"></div>
-                <div class="avatar-ring"></div>
-                <div class="avatar-glow"></div>
+
+            <div class="avatar-wrapper">
+
+                <svg id="avionAvatar" viewBox="0 0 500 700" class="avatar-svg">
+
+                    <!-- Glow -->
+
+                    <defs>
+
+                        <radialGradient id="skinGlow">
+                            <stop offset="0%" stop-color="#6ff8ff" />
+                            <stop offset="100%" stop-color="#0b7cff" />
+                        </radialGradient>
+
+                        <linearGradient id="bodyGlow">
+                            <stop offset="0%" stop-color="#6ff8ff" />
+                            <stop offset="100%" stop-color="#0078ff" />
+                        </linearGradient>
+
+                        <filter id="blurGlow">
+                            <feGaussianBlur stdDeviation="8" />
+                        </filter>
+
+                    </defs>
+
+                    <!-- Halo -->
+
+                    <circle cx="250" cy="170" r="130" stroke="#00d8ff" stroke-width="3" fill="none" opacity=".45" />
+
+                    <circle cx="250" cy="170" r="165" stroke="#00d8ff" stroke-width="2" fill="none" opacity=".18" />
+
+                    <!-- Hair -->
+
+                    <path id="hair" fill="url(#bodyGlow)" opacity=".25" d="
+                M170 85
+                C150 150 150 270 250 290
+                C350 270 350 150 330 85
+                C300 35 200 35 170 85Z" />
+
+                    <!-- Face -->
+
+                    <ellipse id="face" cx="250" cy="170" rx="78" ry="105" fill="url(#skinGlow)" opacity=".25"
+                        stroke="#8fffff" stroke-width="2" />
+
+                    <!-- Eyes -->
+
+                    <ellipse id="leftEye" cx="220" cy="160" rx="8" ry="15" fill="#dfffff" />
+
+                    <ellipse id="rightEye" cx="280" cy="160" rx="8" ry="15" fill="#dfffff" />
+
+                    <!-- Nose -->
+
+                    <line x1="250" y1="175" x2="250" y2="195" stroke="#bfffff" stroke-width="2" />
+
+                    <!-- Smile -->
+
+                    <path id="mouth" d="
+                M220 220
+                Q250 245
+                280 220" stroke="#dfffff" stroke-width="3" fill="none" />
+
+                    <!-- Neck -->
+
+                    <rect x="236" y="270" width="28" height="40" rx="12" fill="#4fdfff" opacity=".5" />
+
+                    <!-- Body -->
+
+                    <path fill="url(#bodyGlow)" opacity=".18" stroke="#66ffff" stroke-width="2" d="
+                M160 350
+                Q250 305
+                340 350
+                L370 560
+                L130 560
+                Z" />
+
+                    <!-- Core -->
+
+                    <circle cx="250" cy="430" r="18" fill="#00d8ff" />
+
+                </svg>
+
             </div>
+
         </div>
     </div>
 </section>

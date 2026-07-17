@@ -1,200 +1,185 @@
-// Avatar Interaction System
+/* ==========================================
+   AVION Premium Avatar
+   File: js/avatar.js
+========================================== */
 
-class AvatarController {
+class AvionAvatar {
+
     constructor() {
-        this.avatar = document.querySelector('.avatar-container');
-        this.avatarCore = document.querySelector('.avatar-core');
+
+        this.leftEye = document.getElementById("leftEye");
+        this.rightEye = document.getElementById("rightEye");
+        this.mouth = document.getElementById("mouth");
+        this.statusText = document.querySelector(".avatar-status span:last-child");
+        this.statusDot = document.querySelector(".status-dot");
+
+        this.isTalking = false;
         this.isListening = false;
-        this.setupListeners();
-        this.setupInteractions();
+
+        this.startIdle();
+
     }
 
-    setupListeners() {
-        // Microphone interaction
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => {
-            if (button.textContent.includes('Talk') || button.classList.contains('primary-button')) {
-                button.addEventListener('click', () => this.toggleListening());
-                button.addEventListener('mouseenter', () => this.avatarReact('hover'));
-                button.addEventListener('mouseleave', () => this.avatarReact('idle'));
-            }
-        });
+    startIdle() {
 
-        // Avatar hover effects
-        if (this.avatar) {
-            this.avatar.addEventListener('mouseenter', () => this.avatarReact('hover'));
-            this.avatar.addEventListener('mouseleave', () => this.avatarReact('idle'));
-            this.avatar.addEventListener('click', () => this.avatarReact('click'));
-        }
+        this.setStatus("ONLINE");
+
+        this.randomBlink();
+
     }
 
-    toggleListening() {
-        this.isListening = !this.isListening;
-        if (this.isListening) {
-            this.startListening();
-        } else {
-            this.stopListening();
-        }
+    randomBlink() {
+
+        setInterval(() => {
+
+            if (!this.leftEye || !this.rightEye) return;
+
+            this.leftEye.style.transform = "scaleY(.05)";
+            this.rightEye.style.transform = "scaleY(.05)";
+
+            setTimeout(() => {
+
+                this.leftEye.style.transform = "scaleY(1)";
+                this.rightEye.style.transform = "scaleY(1)";
+
+            }, 150);
+
+        }, 4000 + Math.random() * 3000);
+
+    }
+
+    startTalking() {
+
+        if (this.isTalking) return;
+
+        this.isTalking = true;
+
+        this.setStatus("SPEAKING");
+
+        this.talkAnimation = setInterval(() => {
+
+            this.mouth.setAttribute(
+                "d",
+                "M180 220 Q200 242 220 220"
+            );
+
+            setTimeout(() => {
+
+                this.mouth.setAttribute(
+                    "d",
+                    "M180 220 Q200 233 220 220"
+                );
+
+            }, 180);
+
+        }, 300);
+
+    }
+
+    stopTalking() {
+
+        this.isTalking = false;
+
+        clearInterval(this.talkAnimation);
+
+        this.mouth.setAttribute(
+            "d",
+            "M180 220 Q200 233 220 220"
+        );
+
+        this.setStatus("ONLINE");
+
     }
 
     startListening() {
-        if (!this.avatarCore) return;
-        
-        this.avatarCore.style.animation = 'none';
-        setTimeout(() => {
-            this.avatarCore.style.animation = 'listening-pulse 0.3s ease-in-out infinite';
-        }, 10);
 
-        this.addListeningIndicator();
+        this.isListening = true;
+
+        this.setStatus("LISTENING");
+
+        this.statusDot.style.background = "#00ffff";
+        this.statusDot.style.boxShadow = "0 0 20px cyan";
+
     }
 
     stopListening() {
-        if (!this.avatarCore) return;
-        
-        this.avatarCore.style.animation = 'core-pulse 3s ease-in-out infinite';
-        this.removeListeningIndicator();
+
+        this.isListening = false;
+
+        this.statusDot.style.background = "#00ff88";
+        this.statusDot.style.boxShadow = "0 0 12px #00ff88";
+
+        this.setStatus("ONLINE");
+
     }
 
-    addListeningIndicator() {
-        let indicator = document.querySelector('.listening-indicator');
-        if (indicator) return;
+    thinking() {
 
-        indicator = document.createElement('div');
-        indicator.className = 'listening-indicator';
-        indicator.style.cssText = `
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid rgba(0, 212, 255, 0.6);
-            animation: listening-ring 1s ease-out infinite;
-            pointer-events: none;
-        `;
+        this.setStatus("THINKING");
 
-        if (this.avatar) {
-            this.avatar.appendChild(indicator);
-        }
     }
 
-    removeListeningIndicator() {
-        const indicator = document.querySelector('.listening-indicator');
-        if (indicator) {
-            indicator.remove();
-        }
+    setStatus(text) {
+
+        if (this.statusText)
+
+            this.statusText.textContent = text;
+
     }
 
-    avatarReact(action) {
-        if (!this.avatar) return;
-
-        switch (action) {
-            case 'hover':
-                this.avatar.style.filter = 'drop-shadow(0 0 40px rgba(0, 212, 255, 0.6))';
-                break;
-            case 'click':
-                this.createClickRipple();
-                break;
-            case 'idle':
-                this.avatar.style.filter = 'none';
-                break;
-        }
-    }
-
-    createClickRipple() {
-        const ripple = document.createElement('div');
-        ripple.style.cssText = `
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            border: 2px solid rgba(0, 212, 255, 0.8);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: ripple-effect 0.6s ease-out;
-            pointer-events: none;
-        `;
-
-        if (this.avatar) {
-            this.avatar.appendChild(ripple);
-            setTimeout(() => ripple.remove(), 600);
-        }
-    }
-
-    setupInteractions() {
-        this.addAnimationStyles();
-    }
-
-    addAnimationStyles() {
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes listening-pulse {
-                0%, 100% {
-                    transform: scale(1);
-                }
-                50% {
-                    transform: scale(1.05);
-                }
-            }
-
-            @keyframes listening-ring {
-                0% {
-                    width: 150px;
-                    height: 150px;
-                    opacity: 1;
-                    transform: translate(-50%, -50%);
-                }
-                100% {
-                    width: 350px;
-                    height: 350px;
-                    opacity: 0;
-                    transform: translate(-50%, -50%);
-                }
-            }
-
-            @keyframes ripple-effect {
-                0% {
-                    width: 250px;
-                    height: 250px;
-                    opacity: 1;
-                }
-                100% {
-                    width: 450px;
-                    height: 450px;
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // Status indicator system
-    updateStatus(status) {
-        const card = document.querySelector('.avatar-card');
-        if (!card) return;
-
-        const statusItems = card.querySelectorAll('.status-item');
-        statusItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            if (text.includes(status.toLowerCase())) {
-                item.classList.add('active');
-            }
-        });
-    }
-
-    getAvatarState() {
-        return {
-            isListening: this.isListening,
-            position: this.avatar ? this.avatar.getBoundingClientRect() : null
-        };
-    }
 }
 
-// Initialize avatar controller
-document.addEventListener('DOMContentLoaded', () => {
-    window.avatarController = new AvatarController();
+/* ------------------------------ */
+
+window.addEventListener("DOMContentLoaded", () => {
+
+    window.avatar = new AvionAvatar();
+
 });
 
-// Export for use in other modules
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AvatarController;
+/* ======================================
+   Demo
+====================================== */
+
+function demoConversation(){
+
+    avatar.startListening();
+
+    setTimeout(()=>{
+
+        avatar.thinking();
+
+    },2000);
+
+    setTimeout(()=>{
+
+        avatar.startTalking();
+
+    },3500);
+
+    setTimeout(()=>{
+
+        avatar.stopTalking();
+
+    },7000);
+
 }
+
+/* ======================================
+   Future Integration
+
+speechSynthesis
+
+↓
+
+avatar.startTalking()
+
+↓
+
+speech ends
+
+↓
+
+avatar.stopTalking()
+
+====================================== */
