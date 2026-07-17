@@ -1,37 +1,29 @@
-"""
-AVION AI Brain
-Premium 2C.2B - Part 1
-"""
-
-
 def generate_response(message: str) -> str:
-    """
-    Generate a simple response based on the user's message.
-    """
 
     message = message.lower().strip()
 
-    # Greetings
-    if message in ["namaste", "namaskar", "hello", "hi"]:
+    greetings = [
+        "namaste",
+        "namaskar",
+        "hello",
+        "hi",
+        "नमस्ते",
+        "नमस्कार",
+        "हेलो"
+    ]
+
+    if message in greetings:
         return (
-            "Namaste. Main Avion hoon. "
-            "Aapka swagat hai. Main aapki kis tarah madad kar sakti hoon?"
+            "नमस्ते। मैं Avion हूँ। "
+            "आपका स्वागत है। मैं आपकी किस तरह मदद कर सकती हूँ?"
         )
 
-    # Identity
-    elif "who are you" in message or "tum kaun ho" in message:
+    if message in ["who are you", "tum kaun ho", "तुम कौन हो", "आप कौन हो"]:
         return (
-            "Main Avion hoon. "
-            "Ek AI assistant jo aapki madad ke liye bana hai."
+            "मैं Avion हूँ। "
+            "एक AI सहायक जो आपकी मदद के लिए बनाया गया है।"
         )
 
-    # Time
-    elif "time" in message or "samay" in message:
-        return (
-            "Abhi main samay batane ke liye taiyar nahin hoon."
-        )
-
-    # Default
     return (
-        "Maaf kijiye. Main abhi is prashn ko samajh nahin paayi."
+        "माफ़ कीजिए। मैं अभी इस प्रश्न को समझ नहीं पाई।"
     )
