@@ -1,0 +1,269 @@
+/* Glass Morphism Styles */
+
+.glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.glass-thick {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-thin {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Colored Glass Variants */
+
+.glass-dark {
+    background: rgba(10, 14, 39, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.glass-dark-thick {
+    background: rgba(10, 14, 39, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.glass-cyan {
+    background: rgba(0, 212, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-blue {
+    background: rgba(0, 153, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 153, 255, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-purple {
+    background: rgba(147, 112, 219, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 112, 219, 0.3);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Glass Hover Effects */
+
+.glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.glass-dark:hover {
+    background: rgba(10, 14, 39, 0.7);
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.glass-cyan:hover {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Glass Cards */
+
+.glass-card {
+    @extend .glass-dark-thick;
+    padding: 1.5rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.15);
+}
+
+/* Glass Button */
+
+.glass-button {
+    @extend .glass;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.glass-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.glass-button:active {
+    transform: scale(0.98);
+}
+
+.glass-button-primary {
+    @extend .glass-button;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 153, 255, 0.2));
+    border-color: rgba(0, 212, 255, 0.5);
+    color: #00d4ff;
+}
+
+.glass-button-primary:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.5), rgba(0, 153, 255, 0.3));
+    border-color: rgba(0, 212, 255, 0.7);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+/* Glass Input */
+
+.glass-input {
+    @extend .glass-dark;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.glass-input:focus {
+    outline: none;
+    border-color: rgba(0, 212, 255, 0.6);
+    background: rgba(10, 14, 39, 0.9);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+/* Glass Container */
+
+.glass-container {
+    @extend .glass-dark-thick;
+    padding: 2rem;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.glass-container-sm {
+    @extend .glass-container;
+    padding: 1rem;
+    gap: 0.75rem;
+}
+
+.glass-container-lg {
+    @extend .glass-container;
+    padding: 3rem;
+    gap: 2rem;
+}
+
+/* Frosted Glass Effect */
+
+.frosted-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Transparency Levels */
+
+.glass-opaque {
+    background: rgba(10, 14, 39, 0.95) !important;
+}
+
+.glass-semi-transparent {
+    background: rgba(10, 14, 39, 0.5) !important;
+}
+
+.glass-transparent {
+    background: rgba(10, 14, 39, 0.1) !important;
+}
+
+/* Gradient Glass */
+
+.glass-gradient {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 212, 255, 0.1) 0%,
+        rgba(0, 153, 255, 0.05) 50%,
+        rgba(147, 112, 219, 0.05) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .glass-container {
+        padding: 1.5rem;
+    }
+
+    .glass-card {
+        padding: 1rem;
+    }
+
+    .glass-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animation Utilities */
+
+.glass-fade-in {
+    animation: glass-fade-in 0.6s ease-out;
+}
+
+@keyframes glass-fade-in {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+.glass-slide-up {
+    animation: glass-slide-up 0.6s ease-out;
+}
+
+@keyframes glass-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

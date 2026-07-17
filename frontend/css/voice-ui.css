@@ -1,0 +1,413 @@
+/* Voice UI Styling */
+
+.voice-ui-container {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.95), rgba(15, 25, 50, 0.9));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
+    animation: voice-ui-fade-in 0.8s ease-out;
+}
+
+@keyframes voice-ui-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Waveform Container */
+.waveform-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+#waveform-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.waveform-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 14, 39, 0.3),
+        transparent 20%,
+        transparent 80%,
+        rgba(10, 14, 39, 0.3)
+    );
+    pointer-events: none;
+}
+
+/* Voice Input Section */
+.voice-input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.microphone-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    animation: microphone-pulse 2s ease-in-out infinite;
+}
+
+@keyframes microphone-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.3));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.6));
+    }
+}
+
+.voice-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.voice-title {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 0;
+    font-weight: 600;
+}
+
+.voice-status-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.voice-button {
+    padding: 0.9rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(0, 153, 255, 0.2));
+    border: 1.5px solid rgba(0, 212, 255, 0.5);
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.voice-button:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.5), rgba(0, 153, 255, 0.3));
+    border-color: rgba(0, 212, 255, 0.8);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+.voice-button.active {
+    background: linear-gradient(135deg, #00d4ff, #0099ff);
+    color: #0a0e27;
+    border-color: #00d4ff;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+}
+
+.voice-button-icon {
+    font-size: 1.2rem;
+    animation: none;
+}
+
+.voice-button.active .voice-button-icon {
+    animation: listening-pulse 0.6s ease-in-out infinite;
+}
+
+@keyframes listening-pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.voice-button-text {
+    font-size: 1rem;
+}
+
+/* Transcription Section */
+.transcription-section {
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    animation: transcription-slide-in 0.6s ease-out 0.3s backwards;
+}
+
+@keyframes transcription-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.transcription-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.transcription-time {
+    font-family: 'Courier New', monospace;
+    color: var(--primary-color);
+}
+
+.transcription-content {
+    min-height: 80px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: rgba(10, 14, 39, 0.3);
+    border-radius: 8px;
+}
+
+.transcription-text {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.transcription-text.placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Voice Commands */
+.voice-commands {
+    animation: commands-slide-in 0.6s ease-out 0.4s backwards;
+}
+
+@keyframes commands-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.commands-title {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.commands-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.command-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 10px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.command-button:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.15);
+}
+
+.command-button:active {
+    transform: translateY(0);
+}
+
+.command-icon {
+    font-size: 1.5rem;
+}
+
+.command-text {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+/* Connection Status */
+.connection-status {
+    display: flex;
+    justify-content: center;
+    animation: connection-fade-in 0.6s ease-out 0.5s backwards;
+}
+
+@keyframes connection-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.connection-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff41;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff41;
+    animation: connection-pulse 2s ease-in-out infinite;
+}
+
+@keyframes connection-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+}
+
+.indicator-text {
+    font-size: 0.8rem;
+    color: #00ff41;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Scrollbar Styling for Transcription */
+.transcription-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transcription-content::-webkit-scrollbar-track {
+    background: rgba(0, 212, 255, 0.05);
+    border-radius: 3px;
+}
+
+.transcription-content::-webkit-scrollbar-thumb {
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 3px;
+}
+
+.transcription-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 212, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .voice-ui-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+
+    .commands-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .microphone-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .waveform-container {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .voice-ui-container {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+
+    .commands-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .microphone-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .voice-title {
+        font-size: 1rem;
+    }
+
+    .voice-status-text {
+        font-size: 0.9rem;
+    }
+
+    .waveform-container {
+        height: 80px;
+    }
+
+    .transcription-content {
+        min-height: 60px;
+    }
+}

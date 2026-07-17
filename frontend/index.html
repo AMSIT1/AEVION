@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AVION 2C.2 - Your Intelligent AI Companion with Voice Interface">
+    <meta name="theme-color" content="#0a0e27">
+    <title>AVION 2C.2 - Intelligent AI Companion</title>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/avatar.css">
+    <link rel="stylesheet" href="css/avatar-female.css">
+    <link rel="stylesheet" href="css/particles.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="stylesheet" href="css/status-panel.css">
+    <link rel="stylesheet" href="css/voice-ui.css">
+    <link rel="stylesheet" href="css/boot-sequence.css">
+    <link rel="stylesheet" href="css/polish.css">
+</head>
+<body>
+    <!-- Boot Sequence -->
+    <div class="boot-sequence" id="boot-sequence">
+        <div class="boot-container">
+            <!-- Boot Logo -->
+            <div class="boot-logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">AVION</span>
+            </div>
+
+            <!-- Boot Status Lines -->
+            <div class="boot-lines">
+                <div class="boot-line">
+                    <span class="boot-label">Initializing System...</span>
+                    <span class="boot-value">▓▓▓▓▓░░░░░ 50%</span>
+                </div>
+                <div class="boot-line">
+                    <span class="boot-label">Loading AI Core...</span>
+                    <span class="boot-value">▓▓▓▓▓▓░░░░ 65%</span>
+                </div>
+                <div class="boot-line">
+                    <span class="boot-label">Initializing Voice Engine...</span>
+                    <span class="boot-value">▓▓▓▓▓▓▓░░░ 70%</span>
+                </div>
+                <div class="boot-line">
+                    <span class="boot-label">Calibrating Neural Network...</span>
+                    <span class="boot-value">▓▓▓▓▓▓▓▓░░ 80%</span>
+                </div>
+                <div class="boot-line">
+                    <span class="boot-label">Synchronizing Protocols...</span>
+                    <span class="boot-value">▓▓▓▓▓▓▓▓▓░ 90%</span>
+                </div>
+                <div class="boot-line">
+                    <span class="boot-label">Boot Complete</span>
+                    <span class="boot-value">▓▓▓▓▓▓▓▓▓▓ 100%</span>
+                </div>
+            </div>
+
+            <!-- Boot Progress -->
+            <div class="boot-progress-container">
+                <div class="boot-progress-bar">
+                    <div class="boot-progress-fill"></div>
+                </div>
+                <div class="boot-percentage">100%</div>
+            </div>
+
+            <!-- Boot Message -->
+            <div class="boot-message">
+                <p>Welcome to AVION 2C.2</p>
+                <p class="boot-submessage">Your Intelligent AI Companion</p>
+            </div>
+
+            <!-- Ready Indicator -->
+            <div class="boot-ready">
+                <span class="ready-dot"></span>
+                <span class="ready-text">System Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">AVION</div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#voice">Voice</a>
+            <a href="#status">Status</a>
+            <a href="#contact">Contact</a>
+            <button class="nav-talk-button">Talk</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section with Female Avatar -->
+        <section class="hero-section" id="home">
+            <div class="background-container">
+                <canvas id="particle-canvas"></canvas>
+                <div class="energy-waves"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="avion-title">
+                        <span class="title-glow">AVION</span>
+                    </div>
+                    
+                    <h1 class="hero-heading">
+                        Your Intelligent AI Companion
+                    </h1>
+                    
+                    <div class="tagline">
+                        <p>Designed to listen.</p>
+                        <p>Built to understand.</p>
+                        <p>Created for the future.</p>
+                    </div>
+                    
+                    <button class="cta-button primary-button">
+                        <span class="button-icon">🎤</span>
+                        <span>Talk to Avion</span>
+                    </button>
+                </div>
+
+                <div class="hero-avatar">
+                    <!-- Female AI Avatar Component -->
+                    <div class="female-avatar-container">
+                        <!-- Glow Rings -->
+                        <div class="glow-ring glow-ring-1"></div>
+                        <div class="glow-ring glow-ring-2"></div>
+                        <div class="glow-ring glow-ring-3"></div>
+
+                        <!-- Energy Aura -->
+                        <div class="energy-aura"></div>
+
+                        <!-- Particle Orbit -->
+                        <div class="particle-orbit">
+                            <div class="particle-dot"></div>
+                            <div class="particle-dot"></div>
+                            <div class="particle-dot"></div>
+                        </div>
+
+                        <!-- Avatar Body -->
+                        <div class="avatar-body">
+                            <!-- Hair -->
+                            <div class="avatar-hair"></div>
+
+                            <!-- Head -->
+                            <div class="avatar-head">
+                                <!-- Eyes -->
+                                <div class="avatar-eyes">
+                                    <div class="eye"></div>
+                                    <div class="eye"></div>
+                                </div>
+
+                                <!-- Mouth -->
+                                <div class="avatar-mouth"></div>
+                            </div>
+
+                            <!-- Torso -->
+                            <div class="avatar-torso"></div>
+
+                            <!-- Status Lights -->
+                            <div class="status-lights">
+                                <div class="status-light"></div>
+                                <div class="status-light processing"></div>
+                                <div class="status-light learning"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Voice UI Section -->
+        <section class="voice-section" id="voice" style="padding: 4rem 2rem; background: linear-gradient(135deg, rgba(10, 14, 39, 0.3), rgba(15, 25, 50, 0.3));">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 1rem; color: #fff;">
+                    <span style="background: linear-gradient(135deg, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        Voice Interface
+                    </span>
+                </h2>
+                
+                <!-- Voice UI Container -->
+                <div class="voice-ui-container">
+                    <!-- Waveform Visualization -->
+                    <div class="waveform-container">
+                        <canvas id="waveform-canvas"></canvas>
+                        <div class="waveform-overlay"></div>
+                    </div>
+
+                    <!-- Voice Input Section -->
+                    <div class="voice-input-section">
+                        <div class="microphone-icon">
+                            <svg viewBox="0 0 24 24" width="48" height="48">
+                                <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" 
+                                      fill="currentColor" opacity="0.6"/>
+                                <path d="M17 16.91c-1.48 1.46-3.51 2.36-5.77 2.36-2.26 0-4.29-.9-5.77-2.36l-1.1 1.1c1.86 1.86 4.41 2.86 6.87 2.86s5.01-1 6.87-2.86l-1.1-1.1zM12 20c2.21 0 4-1.79 4-4h-8c0 2.21 1.79 4 4 4z" 
+                                      fill="currentColor" opacity="0.4"/>
+                            </svg>
+                        </div>
+
+                        <div class="voice-status">
+                            <h3 class="voice-title">Voice Assistant</h3>
+                            <p class="voice-status-text">Ready to listen</p>
+                        </div>
+
+                        <button class="voice-button primary-button">
+                            <span class="voice-button-icon">🎙️</span>
+                            <span class="voice-button-text">Start Listening</span>
+                        </button>
+                    </div>
+
+                    <!-- Transcription Display -->
+                    <div class="transcription-section">
+                        <div class="transcription-header">
+                            <span>Transcription</span>
+                            <span class="transcription-time">0:00</span>
+                        </div>
+                        <div class="transcription-content">
+                            <p class="transcription-text placeholder">Your voice input will appear here...</p>
+                        </div>
+                    </div>
+
+                    <!-- Voice Commands Quick Access -->
+                    <div class="voice-commands">
+                        <div class="commands-title">Quick Commands</div>
+                        <div class="commands-grid">
+                            <button class="command-button" data-command="Help">
+                                <span class="command-icon">❓</span>
+                                <span class="command-text">Help</span>
+                            </button>
+                            <button class="command-button" data-command="Status">
+                                <span class="command-icon">📊</span>
+                                <span class="command-text">Status</span>
+                            </button>
+                            <button class="command-button" data-command="Settings">
+                                <span class="command-icon">⚙️</span>
+                                <span class="command-text">Settings</span>
+                            </button>
+                            <button class="command-button" data-command="Exit">
+                                <span class="command-icon">🚪</span>
+                                <span class="command-text">Exit</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Connection Status -->
+                    <div class="connection-status">
+                        <div class="connection-indicator">
+                            <span class="indicator-dot"></span>
+                            <span class="indicator-text">Connected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Panel Section -->
+        <section class="status-section" id="status" style="padding: 4rem 2rem; background: linear-gradient(135deg, rgba(10, 14, 39, 0.5), rgba(10, 20, 50, 0.5));">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem; color: #fff;">
+                    <span style="background: linear-gradient(135deg, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                        Real-Time AI Status
+                    </span>
+                </h2>
+
+                <!-- Enhanced Status Panel -->
+                <div class="enhanced-status-panel">
+                    <div class="status-panel-header">
+                        <h3>System Status</h3>
+                        <div class="panel-indicator">
+                            <span class="indicator-dot"></span>
+                            <span class="indicator-text">Active</span>
+                        </div>
+                    </div>
+
+                    <div class="status-panel-content">
+                        <!-- Intelligence Level -->
+                        <div class="status-row">
+                            <div class="status-label">
+                                <span class="label-text">Intelligence</span>
+                                <span class="label-value">92%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, #00d4ff, #0099ff);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Learning Capacity -->
+                        <div class="status-row">
+                            <div class="status-label">
+                                <span class="label-text">Learning</span>
+                                <span class="label-value">78%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 78%; background: linear-gradient(90deg, #ff0080, #ff3366);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Voice Recognition -->
+                        <div class="status-row">
+                            <div class="status-label">
+                                <span class="label-text">Voice</span>
+                                <span class="label-value">100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%; background: linear-gradient(90deg, #00ff41, #00cc33);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Response Time -->
+                        <div class="status-row">
+                            <div class="status-label">
+                                <span class="label-text">Response</span>
+                                <span class="label-value">45ms</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 95%; background: linear-gradient(90deg, #9370db, #bb99ff);"></div>
+                            </div>
+                        </div>
+
+                        <!-- Energy Level -->
+                        <div class="status-row">
+                            <div class="status-label">
+                                <span class="label-text">Energy</span>
+                                <span class="label-value">87%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill energy-bar" style="width: 87%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="status-panel-footer">
+                        <div class="status-stat">
+                            <span class="stat-label">Uptime</span>
+                            <span class="stat-value">24:15:42</span>
+                        </div>
+                        <div class="status-stat">
+                            <span class="stat-label">Conversations</span>
+                            <span class="stat-value">1,247</span>
+                        </div>
+                        <div class="status-stat">
+                            <span class="stat-label">Accuracy</span>
+                            <span class="stat-value">96.8%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Core Panel (original) -->
+        <section class="features-section" style="padding: 4rem 2rem; text-align: center; background: rgba(10, 14, 39, 0.3);">
+            <h2 style="color: #fff; margin-bottom: 3rem;">AI System Core</h2>
+            <div class="avatar-card" style="margin: 0 auto;">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="avatar-icon">◯</span>
+                        <span>AI CORE</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h3>Avatar Interface</h3>
+                    <div class="status-list">
+                        <div class="status-item online">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Online</span>
+                        </div>
+                        <div class="status-item ready">
+                            <span class="status-indicator">●</span>
+                            <span class="status-text">Brain Ready</span>
+                        </div>
+                        <div class="status-item ready">
+                            <span class="status-indicator">●</span>
+                            <span class="status-text">Voice Ready</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="energy-bar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer style="padding: 3rem 2rem; text-align: center; background: rgba(10, 14, 39, 0.8); border-top: 1px solid rgba(0, 212, 255, 0.1);">
+            <p style="color: #a0a8d8; margin: 0.5rem 0;">AVION 2C.2 - Premium AI Companion</p>
+            <p style="color: #5a5a7a; margin: 0.5rem 0; font-size: 0.85rem;">© 2026 AEVION. All rights reserved.</p>
+        </footer>
+    </main>
+
+    <!-- JavaScript Files -->
+    <script src="js/boot-sequence.js"></script>
+    <script src="js/voice-greeting.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/avatar.js"></script>
+    <script src="js/female-avatar.js"></script>
+    <script src="js/voice-ui.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

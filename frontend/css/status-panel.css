@@ -1,0 +1,279 @@
+/* Enhanced Status Panel Styles */
+
+.enhanced-status-panel {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 15px;
+    padding: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    animation: panel-slide-in 0.6s ease-out;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+}
+
+@keyframes panel-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header */
+.status-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-panel-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.panel-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.75rem;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+.indicator-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff41;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff41;
+    animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(0.8);
+    }
+}
+
+.indicator-text {
+    font-size: 0.8rem;
+    color: #00ff41;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Content */
+.status-panel-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.status-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    animation: status-row-fade 0.6s ease-out backwards;
+}
+
+.status-row:nth-child(1) { animation-delay: 0.1s; }
+.status-row:nth-child(2) { animation-delay: 0.2s; }
+.status-row:nth-child(3) { animation-delay: 0.3s; }
+.status-row:nth-child(4) { animation-delay: 0.4s; }
+.status-row:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes status-row-fade {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.status-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.label-value {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: progress-pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+}
+
+@keyframes progress-pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+    }
+    50% {
+        opacity: 0.7;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+}
+
+.progress-fill.energy-bar {
+    background: linear-gradient(
+        90deg,
+        rgba(0, 212, 255, 0.8),
+        rgba(0, 153, 255, 0.6),
+        rgba(0, 212, 255, 0.8)
+    );
+    background-size: 200% 100%;
+    animation: progress-pulse 2s ease-in-out infinite, energy-flow 3s ease-in-out infinite;
+}
+
+@keyframes energy-flow {
+    0%, 100% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+}
+
+/* Footer */
+.status-panel-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    padding-top: 1rem;
+}
+
+.status-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+}
+
+/* Hover Effects */
+.enhanced-status-panel {
+    transition: all 0.3s ease;
+}
+
+.enhanced-status-panel:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.status-row:hover {
+    transform: translateX(5px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .enhanced-status-panel {
+        padding: 1.2rem;
+        max-width: 100%;
+    }
+
+    .status-panel-footer {
+        gap: 0.75rem;
+    }
+
+    .label-text,
+    .label-value,
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .enhanced-status-panel {
+        padding: 1rem;
+    }
+
+    .status-panel-header h3 {
+        font-size: 1rem;
+    }
+
+    .status-panel-content {
+        gap: 1rem;
+    }
+
+    .status-row {
+        gap: 0.4rem;
+    }
+
+    .progress-bar {
+        height: 5px;
+    }
+
+    .status-panel-footer {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 0.8rem;
+    }
+}

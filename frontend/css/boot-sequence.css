@@ -1,0 +1,374 @@
+/* Boot Sequence Styling */
+
+.boot-sequence {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0e27 0%, #050816 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: boot-fade-out 0.8s ease-out 3.5s forwards;
+    pointer-events: none;
+}
+
+@keyframes boot-fade-out {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.boot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    max-width: 600px;
+    padding: 2rem;
+    animation: boot-container-fade-in 0.6s ease-out;
+}
+
+@keyframes boot-container-fade-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Boot Logo */
+.boot-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    animation: boot-logo-glow 2s ease-in-out infinite;
+}
+
+.logo-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.9), rgba(0, 153, 255, 0.5));
+    box-shadow: 
+        0 0 40px rgba(0, 212, 255, 0.6),
+        inset 0 0 30px rgba(0, 212, 255, 0.3),
+        0 0 80px rgba(0, 153, 255, 0.3);
+    animation: logo-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 
+            0 0 40px rgba(0, 212, 255, 0.6),
+            inset 0 0 30px rgba(0, 212, 255, 0.3),
+            0 0 80px rgba(0, 153, 255, 0.3);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 
+            0 0 60px rgba(0, 212, 255, 0.8),
+            inset 0 0 40px rgba(0, 212, 255, 0.4),
+            0 0 120px rgba(0, 153, 255, 0.5);
+    }
+}
+
+@keyframes boot-logo-glow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #00d4ff, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.2em;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    animation: logo-float 3s ease-in-out infinite;
+}
+
+@keyframes logo-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Boot Lines */
+.boot-lines {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+}
+
+.boot-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 212, 255, 0.05);
+    border-left: 2px solid rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    animation: boot-line-slide 0.5s ease-out backwards;
+}
+
+.boot-line:nth-child(1) { animation-delay: 0.2s; }
+.boot-line:nth-child(2) { animation-delay: 0.4s; }
+.boot-line:nth-child(3) { animation-delay: 0.6s; }
+.boot-line:nth-child(4) { animation-delay: 0.8s; }
+.boot-line:nth-child(5) { animation-delay: 1s; }
+.boot-line:nth-child(6) { animation-delay: 1.2s; }
+
+@keyframes boot-line-slide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.boot-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.boot-value {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Boot Progress */
+.boot-progress-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    animation: progress-fade-in 0.6s ease-out 1.5s backwards;
+}
+
+@keyframes progress-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.boot-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.boot-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #0099ff);
+    border-radius: 4px;
+    width: 0%;
+    animation: boot-progress 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes boot-progress {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.boot-percentage {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+    animation: percentage-count 2s ease-out forwards;
+}
+
+@keyframes percentage-count {
+    0% {
+        content: '0%';
+    }
+    100% {
+        content: '100%';
+    }
+}
+
+/* Boot Message */
+.boot-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: message-fade-in 0.8s ease-out 2s backwards;
+}
+
+@keyframes message-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.boot-message p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: center;
+}
+
+.boot-submessage {
+    font-size: 0.95rem;
+    color: var(--text-secondary) !important;
+    font-weight: 400 !important;
+}
+
+/* Ready Indicator */
+.boot-ready {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: 50px;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    animation: ready-pulse-in 0.8s ease-out 2.5s backwards;
+}
+
+@keyframes ready-pulse-in {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ready-dot {
+    width: 10px;
+    height: 10px;
+    background: #00ff41;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff41;
+    animation: ready-blink 1s ease-in-out infinite;
+}
+
+@keyframes ready-blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.ready-text {
+    font-size: 0.9rem;
+    color: #00ff41;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Boot Complete State */
+.boot-sequence.boot-complete {
+    animation: boot-fade-out 0.5s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .boot-container {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .logo-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .logo-text {
+        font-size: 1.5rem;
+    }
+
+    .boot-line {
+        font-size: 0.85rem;
+        padding: 0.6rem 0.8rem;
+    }
+
+    .boot-message p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .boot-container {
+        gap: 1.2rem;
+        padding: 1rem;
+    }
+
+    .logo-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+        letter-spacing: 0.15em;
+    }
+
+    .boot-lines {
+        gap: 0.5rem;
+    }
+
+    .boot-line {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.6rem;
+    }
+
+    .boot-message p {
+        font-size: 0.95rem;
+    }
+
+    .boot-submessage {
+        font-size: 0.8rem !important;
+    }
+}
